@@ -1,0 +1,23 @@
+@(id: Option[String], form: Form[models.User])
+@import helper.twitterBootstrap._
+
+@main("Welcome to Play 2.0") {
+  <div class="row">
+  <div class="span8">
+  <h2>
+    @if(!id.isDefined) {
+      Add
+    } else {
+      Edit
+    } an user</h2>
+  @helper.form(action = (if(!id.isDefined) routes.userController.create else routes.userController.edit(id.get)), 'class -> "form-horizontal") {
+    @helper.inputText(form("firstName"))
+    @helper.inputText(form("lastName"))
+    @helper.inputText(form("number"))
+    <div class="form-actions">
+      <input class="btn btn-primary" type="submit">
+    </div>
+  }
+  </div>
+  </div>
+}
